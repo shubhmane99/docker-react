@@ -1,0 +1,10 @@
+
+sudo: required #anytime we make use of docker we have to have super user permission
+services:
+  - docker # by adding this travis ci going to automatically install copy of docker into running container
+
+before_install: 
+  - docker build -t shubhmane/docker-react -f Dockerfile.dev .
+
+script: # this helps us actually to run our test suits
+  - docker run shubhmane/docker-react npm run test -- --coverage
